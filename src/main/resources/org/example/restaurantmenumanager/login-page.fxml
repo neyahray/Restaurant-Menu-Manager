@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane fx:id="root" prefHeight="1120.0" prefWidth="1960.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.restaurantmenumanager.LoginPageController">
+
+<padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+</padding>
+    <ImageView fitHeight="1120" fitWidth="1960" opacity="0.39" preserveRatio="false">
+        <Image url="@../../../images/pinkFlowerPattern.jpg" />
+      <effect>
+         <Glow />
+      </effect>
+    </ImageView>
+   <StackPane fx:id="mainStackPane" prefHeight="150.0" prefWidth="200.0">
+      <children>
+         <VBox fx:id="loginVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-repeat: no-repeat;">
+            <children>
+               <Label contentDisplay="CENTER" graphicTextGap="0.0" nodeOrientation="LEFT_TO_RIGHT" text="⋆.୭ Welcome to Spring Cafe Menu!࿔*:⭑" textFill="#818062">
+                  <font>
+                     <Font name="Trebuchet MS Bold" size="67.0" />
+                  </font>
+                  <effect>
+                     <Glow level="0.32" />
+                  </effect>
+                  <VBox.margin>
+                     <Insets top="70.0" />
+                  </VBox.margin>
+               </Label>
+               <StackPane prefHeight="150.0" prefWidth="200.0">
+                  <children>
+                     <VBox fx:id="choiceVBox" alignment="TOP_CENTER" prefHeight="1080.0" prefWidth="1920.0" StackPane.alignment="CENTER">
+                        <children>
+                           <Label graphicTextGap="0.0" nodeOrientation="LEFT_TO_RIGHT" text="I want to log in menu as:" textFill="#ff8c8c">
+                              <font>
+                                 <Font name="Trebuchet MS Bold" size="57.0" />
+                              </font>
+                              <effect>
+                                 <Glow level="0.32" />
+                              </effect>
+                              <VBox.margin>
+                                 <Insets bottom="40.0" />
+                              </VBox.margin>
+                           </Label>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                                 <Button fx:id="guest" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#clickedMouseChoiceButton" onMouseEntered="#enteredMouseChoiceButton" onMouseExited="#exitedMouseChoiceButton" onMousePressed="#pressedMouseChoiceButton" onMouseReleased="#releasedMouseChoiceButton" style="-fx-background-color: #adb493; -fx-background-radius: 16px;" text="Guest" textAlignment="CENTER" textFill="#fefaf1">
+                                    <font>
+                                       <Font name="Trebuchet MS Bold" size="28.0" />
+                                    </font>
+                                    <padding>
+                                       <Insets bottom="20.0" left="95.0" right="95.0" top="20.0" />
+                                    </padding>
+                                    <HBox.margin>
+                                       <Insets right="35.0" />
+                                    </HBox.margin>
+                                 </Button>
+                                 <Button fx:id="employee" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#clickedMouseChoiceButton" onMouseEntered="#enteredMouseChoiceButton" onMouseExited="#exitedMouseChoiceButton" onMousePressed="#pressedMouseChoiceButton" onMouseReleased="#releasedMouseChoiceButton" style="-fx-background-color: #adb493; -fx-background-radius: 16px;" text="Employee" textAlignment="CENTER" textFill="#fefaf1">
+                                    <font>
+                                       <Font name="Trebuchet MS Bold" size="28.0" />
+                                    </font>
+                                    <padding>
+                                       <Insets bottom="20.0" left="65.0" right="65.0" top="20.0" />
+                                    </padding>
+                                    <HBox.margin>
+                                       <Insets left="35.0" />
+                                    </HBox.margin>
+                                 </Button>
+                              </children>
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                           </HBox>
+                        </children>
+                     </VBox>
+                     <VBox fx:id="passwordVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="false">
+                        <children>
+                           <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                                 <Label alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="0.0" nodeOrientation="LEFT_TO_RIGHT" text="Username:" textFill="#ff8c8c">
+                                    <font>
+                                       <Font name="Trebuchet MS Bold" size="57.0" />
+                                    </font>
+                                    <effect>
+                                       <Glow level="0.32" />
+                                    </effect>
+                                    <padding>
+                                       <Insets right="35.0" />
+                                    </padding>
+                                    <HBox.margin>
+                                       <Insets bottom="20.0" top="20.0" />
+                                    </HBox.margin>
+                                 </Label>
+                                 <StackPane prefHeight="70.0" prefWidth="450.0" style="-fx-background-color: #c0c195; -fx-background-radius: 18;">
+                                    <children>
+                                       <PasswordField fx:id="userHiddenField" onAction="#passwordOnAction" promptText="Enter username" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
+                                          <font>
+                                             <Font name="Roboto Light" size="35.0" />
+                                          </font>
+                                          <StackPane.margin>
+                                             <Insets />
+                                          </StackPane.margin>
+                                       </PasswordField>
+                                       <TextField fx:id="userShownField" layoutX="10.0" layoutY="12.0" mouseTransparent="true" onAction="#passwordOnAction" opacity="0.0" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
+                                          <font>
+                                             <Font name="Roboto Light" size="35.0" />
+                                          </font>
+                                       </TextField>
+                                    </children>
+                                    <opaqueInsets>
+                                       <Insets />
+                                    </opaqueInsets>
+                                    <HBox.margin>
+                                       <Insets bottom="15.0" left="35.0" right="35.0" top="15.0" />
+                                    </HBox.margin>
+                                    <effect>
+                                       <Glow />
+                                    </effect>
+                                 </StackPane>
+                                 <Label accessibleRole="BUTTON" alignment="CENTER" onMousePressed="#toShowUserFieldPressed" onMouseReleased="#toShowUserFieldReleased" text=" ❀˖°" textFill="#766c60">
+                                    <font>
+                                       <Font size="35.0" />
+                                    </font>
+                                    <effect>
+                                       <Glow />
+                                    </effect>
+                                    <HBox.margin>
+                                       <Insets bottom="20.0" left="10.0" top="20.0" />
+                                    </HBox.margin>
+                                 </Label>
+                              </children>
+                           </HBox>
+                           <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                                 <Label alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="0.0" nodeOrientation="LEFT_TO_RIGHT" text="Password: " textFill="#ff8c8c">
+                                    <font>
+                                       <Font name="Trebuchet MS Bold" size="57.0" />
+                                    </font>
+                                    <effect>
+                                       <Glow level="0.32" />
+                                    </effect>
+                                    <padding>
+                                       <Insets right="35.0" />
+                                    </padding>
+                                    <HBox.margin>
+                                       <Insets bottom="20.0" top="20.0" />
+                                    </HBox.margin>
+                                 </Label>
+                                 <StackPane prefHeight="70.0" prefWidth="450.0" style="-fx-background-color: #c0c195; -fx-background-radius: 18;">
+                                    <children>
+                                       <PasswordField fx:id="passwordHiddenField" layoutX="12.0" layoutY="12.0" onAction="#passwordOnAction" promptText="Enter password" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
+                                          <font>
+                                             <Font name="Roboto Light" size="35.0" />
+                                          </font>
+                                       </PasswordField>
+                                       <TextField fx:id="passwordShownField" mouseTransparent="true" onAction="#passwordOnAction" opacity="0.0" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
+                                          <font>
+                                             <Font name="Roboto Light" size="35.0" />
+                                          </font>
+                                          <StackPane.margin>
+                                             <Insets left="2.0" />
+                                          </StackPane.margin>
+                                       </TextField>
+                                    </children>
+                                    <HBox.margin>
+                                       <Insets bottom="15.0" left="35.0" right="35.0" top="15.0" />
+                                    </HBox.margin>
+                                    <effect>
+                                       <Glow />
+                                    </effect>
+                                 </StackPane>
+                                 <Label accessibleRole="BUTTON" onMousePressed="#toShowPasswordFieldPressed" onMouseReleased="#toShowPasswordFieldReleased" text=" ❀˖°" textFill="#766c60">
+                                    <font>
+                                       <Font size="35.0" />
+                                    </font>
+                                    <effect>
+                                       <Glow />
+                                    </effect>
+                                    <HBox.margin>
+                                       <Insets bottom="30.0" left="10.0" top="20.0" />
+                                    </HBox.margin>
+                                 </Label>
+                              </children>
+                           </HBox>
+                            <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#clickedMouseChoiceButton" onMouseEntered="#enteredMouseChoiceButton" onMouseExited="#exitedMouseChoiceButton" onMousePressed="#loginButtonPressed" onMouseReleased="#loginButtonReleased" style="-fx-background-color: #adb493; -fx-background-radius: 16px;" text="Log in!" textAlignment="CENTER" textFill="#fefaf1">
+                                <font>
+                                    <Font name="Trebuchet MS Bold" size="40.0" />
+                                </font>
+                                <padding>
+                                    <Insets bottom="15.0" left="390.0" right="390.0" top="15.0" />
+                                </padding>
+                                <HBox.margin>
+                                    <Insets top="50.0" />
+                                </HBox.margin>
+                              <VBox.margin>
+                                 <Insets top="50.0" />
+                              </VBox.margin>
+                            </Button>
+                        </children>
+                     </VBox>
+                  </children>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <padding>
+                     <Insets top="70.0" />
+                  </padding>
+               </StackPane>
+            </children>
+            <StackPane.margin>
+               <Insets />
+            </StackPane.margin>
+         </VBox>
+         <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+            <image>
+               <Image url="@../../../images/lilyIcon.png" />
+            </image>
+            <StackPane.margin>
+               <Insets />
+            </StackPane.margin>
+         </ImageView>
+         <ImageView fitHeight="230.0" fitWidth="230.0" layoutX="10.0" layoutY="860.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
+            <image>
+               <Image url="@../../../images/lilyIcon.png" />
+            </image>
+            <StackPane.margin>
+               <Insets top="250.0" />
+            </StackPane.margin>
+         </ImageView>
+      </children>
+   </StackPane>
+   <Button fx:id="goBackButton" ellipsisString="" mnemonicParsing="false" onAction="#goBackButtonOnAction" style="-fx-background-color: #fefaf1; -fx-background-radius: 16px;" text="To Main Page" textAlignment="CENTER" textFill="#ff8c8c" visible="false" StackPane.alignment="TOP_LEFT">
+      <font>
+         <Font name="Trebuchet MS Bold" size="25.0" />
+      </font>
+      <padding>
+         <Insets bottom="10.0" left="80.0" right="80.0" top="10.0" />
+      </padding>
+      <effect>
+         <Glow />
+      </effect>
+   </Button>
+   <Label fx:id="notificationMessage" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="0.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.0" textFill="#48372f">
+      <font>
+         <Font name="Trebuchet MS Bold" size="25.0" />
+      </font>
+      <effect>
+         <Glow level="0.32" />
+      </effect>
+      <StackPane.margin>
+         <Insets bottom="650.0" />
+      </StackPane.margin>
+   </Label>
+
+</StackPane>
