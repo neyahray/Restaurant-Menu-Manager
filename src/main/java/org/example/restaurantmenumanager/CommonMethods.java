@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
@@ -49,6 +50,32 @@ public class CommonMethods {
 
         fadeIn.play();
         fadeIn.setOnFinished(e -> fadeOut.play());
+    }
+
+    protected void buttonEntered(Node button, String color, int radius, String cursor) {
+        playScaleAnimation(button, 1.09);
+        button.setStyle("-fx-background-color: " + color + "; -fx-background-radius: " + radius + "; -fx-cursor: " + cursor);
+    }
+
+    protected void buttonExited(Node button, String color, int radius) {
+        playScaleAnimation(button, 1);
+        button.setStyle("-fx-background-color: " + color + "; -fx-background-radius: " + radius);
+    }
+
+    protected void buttonPressed(Node button) {
+        playScaleAnimation(button, 0.9);
+    }
+
+    protected void buttonReleased(Node button) {
+        playScaleAnimation(button, 1.09);
+    }
+
+    protected void enterKBoard(Node node, Runnable action) { //Runnable action for methods
+        node.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                action.run();
+            }
+        });
     }
 
 

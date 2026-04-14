@@ -1,24 +1,11 @@
 package org.example.restaurantmenumanager;
 
-public class Drink {
-    private int id;
-    private String name;
-    private double price;
-
-    public Drink(int id, String name, double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+public class Drink extends Item{
+    public Drink(int id, String name, double price, String description) {
+        super(id, name, price, description);
     }
 
-    public int getId() {
-        return id;
+    public Drink(String name, double price, String description) {
+        super(name, price, description);
     }
-    public String getName() {
-        return name;
-    }
-    public double getPrice() {
-        return price;
-    }
-
 }

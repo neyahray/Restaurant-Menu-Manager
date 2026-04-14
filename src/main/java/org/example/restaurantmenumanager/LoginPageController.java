@@ -1,10 +1,8 @@
 package org.example.restaurantmenumanager;
 
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -12,16 +10,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.util.Duration;
-import javafx.animation.ScaleTransition;
 import javafx.scene.control.Label;
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,52 +24,29 @@ public class LoginPageController extends CommonMethods{
     @FXML
     protected void enteredMouseChoiceButton(MouseEvent event) {
         Node source = (Node) event.getSource();
-        playScaleAnimation(source, 1.09);
-        source.setStyle("-fx-background-color: #8c8c65; -fx-background-radius: 15; -fx-cursor: hand;");
+        buttonEntered(source, "#8c8c65", 15, "hand");
     }
 
     @FXML
     protected void exitedMouseChoiceButton(MouseEvent event) {
         Node source = (Node) event.getSource();
-        playScaleAnimation((Node) event.getSource(), 1.0);
-        source.setStyle("-fx-background-color: #a3a380; -fx-background-radius: 15;");
+        buttonExited(source, "#a3a380", 15);
     }
 
     @FXML
     protected void pressedMouseChoiceButton(MouseEvent event) {
         Node source = (Node) event.getSource();
-        playScaleAnimation(source, 0.9);
+        buttonPressed(source);
     }
 
     @FXML
     protected void releasedMouseChoiceButton(MouseEvent event) {
         Node source = (Node) event.getSource();
-        playScaleAnimation(source, 1.09);
+        buttonReleased(source);
     }
-
-//    @FXML
-//    Label notificationMessage;
-
-
-//    protected void notification(String message) {
-//        notificationMessage.toFront();
-//        notificationMessage.setText(message);
-//        FadeTransition fadeIn = new FadeTransition(Duration.millis(300), notificationMessage);
-//        fadeIn.setFromValue(0.0);
-//        fadeIn.setToValue(1.0);
-//
-//        FadeTransition fadeOut = new FadeTransition(Duration.millis(300), notificationMessage);
-//        fadeOut.setFromValue(1.0);
-//        fadeOut.setToValue(0.0);
-//        fadeOut.setDelay(Duration.seconds(2));
-//
-//        fadeIn.play();
-//        fadeIn.setOnFinished(e -> fadeOut.play());
-//    }
 
     @FXML
     VBox choiceVBox;
-
     @FXML
     StackPane mainStackPane;
 
@@ -100,68 +72,63 @@ public class LoginPageController extends CommonMethods{
     VBox passwordVBox;
 
     @FXML
-    TextField userShownField, passwordShownField;
+    Label flowerUsernameButton, flowerPasswordButton;
 
     @FXML
-    PasswordField userHiddenField, passwordHiddenField;
+    TextField usernameTextField, passwordTextField;
 
     @FXML
-    protected void toShowUserFieldPressed(MouseEvent event) {
-        Node source = (Node) event.getSource();
-        playScaleAnimation(source, 0.9);
-        userShownField.setText(userHiddenField.getText());
-        userHiddenField.setOpacity(0);
-        userHiddenField.setMouseTransparent(true);
-        userShownField.setOpacity(1);
-        userShownField.setMouseTransparent(false);
+    PasswordField usernamePasswordField, passwordPasswordField;
 
-        userShownField.requestFocus();
-        userShownField.positionCaret(userShownField.getText().length());
+    protected void toShowText(TextField textField, PasswordField passwordField) {
+        textField.setText(passwordField.getText());
+        passwordField.setOpacity(0);
+        passwordField.setMouseTransparent(true);
+        textField.setOpacity(1);
+        textField.setMouseTransparent(false);
+
+        textField.requestFocus();
+        textField.positionCaret(textField.getText().length());
+    }
+
+    protected void toHideText(TextField textField, PasswordField passwordField) {
+        passwordField.setText(textField.getText());
+        textField.setOpacity(0);
+        textField.setMouseTransparent(true);
+        passwordField.setOpacity(1);
+        passwordField.setMouseTransparent(false);
+
+        passwordField.requestFocus();
+        passwordField.positionCaret(passwordField.getText().length());
     }
 
     @FXML
-    protected void toShowUserFieldReleased(MouseEvent event) {
+    protected void flowerPressed(MouseEvent event) {
         Node source = (Node) event.getSource();
-        playScaleAnimation(source, 1.09);
-        userHiddenField.setText(userShownField.getText());
-        userShownField.setOpacity(0);
-        userShownField.setMouseTransparent(true);
-        userHiddenField.setOpacity(1);
-        userHiddenField.setMouseTransparent(false);
-
-        userHiddenField.requestFocus();
-        userHiddenField.positionCaret(userHiddenField.getText().length());
+        String id = source.getId();
+        switch (id) {
+            case "flowerUsernameButton":
+                playScaleAnimation(source, 0.9);
+                toShowText(usernameTextField, usernamePasswordField);
+            case "flowerPasswordButton":
+                playScaleAnimation(source, 0.9);
+                toShowText(passwordTextField, passwordPasswordField);
+        }
     }
 
     @FXML
-    protected void toShowPasswordFieldPressed(MouseEvent event) {
+    protected void flowerReleased(MouseEvent event) {
         Node source = (Node) event.getSource();
-        playScaleAnimation(source, 0.9);
-        passwordShownField.setText(passwordHiddenField.getText());
-        passwordHiddenField.setOpacity(0);
-        passwordHiddenField.setMouseTransparent(true);
-        passwordShownField.setOpacity(1);
-        passwordShownField.setMouseTransparent(false);
-
-        passwordShownField.requestFocus();
-        passwordShownField.positionCaret(passwordShownField.getText().length());
+        String id = source.getId();
+        switch (id) {
+            case "flowerUsernameButton":
+                playScaleAnimation(source, 1.09);
+                toHideText(usernameTextField, usernamePasswordField);
+            case "flowerPasswordButton":
+                playScaleAnimation(source, 1.09);
+                toHideText(passwordTextField, passwordPasswordField);
+        }
     }
-
-    @FXML
-    protected void toShowPasswordFieldReleased(MouseEvent event) {
-        Node source = (Node) event.getSource();
-        playScaleAnimation(source, 1.09);
-        passwordHiddenField.setText(passwordShownField.getText());
-        passwordShownField.setOpacity(0);
-        passwordShownField.setMouseTransparent(true);
-        passwordHiddenField.setOpacity(1);
-        passwordHiddenField.setMouseTransparent(false);
-
-        passwordHiddenField.requestFocus();
-        passwordHiddenField.positionCaret(passwordHiddenField.getText().length());
-    }
-
-
 
 
     protected static boolean userInputCheck(String str) {
@@ -179,17 +146,17 @@ public class LoginPageController extends CommonMethods{
     }
 
     protected void toClearFields() {
-        userShownField.clear();
-        userHiddenField.clear();
-        passwordShownField.clear();
-        passwordHiddenField.clear();
+        usernameTextField.clear();
+        usernamePasswordField.clear();
+        passwordTextField.clear();
+        passwordPasswordField.clear();
     }
 
     @FXML
     protected void passwordCheck() {
-        String key = userHiddenField.getText();
+        String key = usernamePasswordField.getText();
         String value = passwordsBase.get(key);
-        String password = passwordHiddenField.getText();
+        String password = passwordPasswordField.getText();
         Boolean keyValid = userInputCheck(key);
         Boolean passwordValid = passwordInputCheck(password);
 
@@ -249,29 +216,30 @@ public class LoginPageController extends CommonMethods{
         playScaleAnimation(source, 1.04);
     }
 
+    protected void passwordOnActionShown(TextField textField) {
+//        textField.setOnKeyPressed(event -> {
+//            if (event.getCode() == KeyCode.ENTER) {
+//                passwordCheck();
+//            }
+//        });
+        enterKBoard(textField, this::passwordCheck);
+    }
+    protected void passwordOnActionHidden(PasswordField passwordField) {
+//        passwordField.setOnKeyPressed(event -> {
+//            if (event.getCode() == KeyCode.ENTER) {
+//                passwordCheck();
+//            }
+//        });
+
+        enterKBoard(passwordField,this::passwordCheck);
+    }
+
     @FXML
     protected void passwordOnAction() {
-        userShownField.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                passwordCheck();
-            }
-        });
-        userHiddenField.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                passwordCheck();
-            }
-        });
-        passwordShownField.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                passwordCheck();
-            }
-        });
-        passwordHiddenField.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                passwordCheck();
-            }
-        });
-
+        passwordOnActionShown(usernameTextField);
+        passwordOnActionHidden(usernamePasswordField);
+        passwordOnActionShown(passwordTextField);
+        passwordOnActionHidden(passwordPasswordField);
     }
 
     @FXML
@@ -323,10 +291,5 @@ public class LoginPageController extends CommonMethods{
                 goBackButton.setVisible(true);
                 break;
         }
-
     }
-
-
-
-
 }

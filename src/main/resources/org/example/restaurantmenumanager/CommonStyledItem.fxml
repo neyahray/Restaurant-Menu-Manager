@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="800.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <VBox alignment="CENTER_LEFT" prefWidth="30.0">
+         <children>
+              <Label fx:id="id" alignment="CENTER" style="-fx-text-fill: #847b54;" text="id" wrapText="true">
+                  <font>
+                  <Font name="Trebuchet MS Bold" size="30.0" />
+               </font>
+              </Label>
+         </children>
+         <HBox.margin>
+            <Insets left="20.0" right="60.0" />
+         </HBox.margin>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" prefWidth="300.0">
+         <children>
+              <Label fx:id="name" style="-fx-text-fill: #847b54;" text="name" wrapText="true">
+                  <font>
+                  <Font name="Trebuchet MS Bold" size="30.0" />
+               </font>
+               <padding>
+                  <Insets right="50.0" />
+               </padding>
+              </Label>
+         </children>
+         <HBox.margin>
+            <Insets right="30.0" />
+         </HBox.margin>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" prefWidth="170.0">
+         <children>
+              <Label fx:id="price" style="-fx-text-fill: #847b54;" text="price" wrapText="true">
+                  <font>
+                  <Font name="Trebuchet MS Bold" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+              </Label>
+         </children>
+         <HBox.margin>
+            <Insets right="40.0" />
+         </HBox.margin>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" prefWidth="300.0">
+         <children>
+              <Label fx:id="description" style="-fx-text-fill: #847b54;" text="description" wrapText="true">
+                  <font>
+                  <Font name="Trebuchet MS Bold" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+              </Label>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <padding>
+            <Insets left="50.0" />
+         </padding>
+      </VBox>
+    </children>
+</fx:root>

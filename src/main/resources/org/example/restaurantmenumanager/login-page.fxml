@@ -99,7 +99,7 @@
                                  </Label>
                                  <StackPane prefHeight="70.0" prefWidth="450.0" style="-fx-background-color: #c0c195; -fx-background-radius: 18;">
                                     <children>
-                                       <PasswordField fx:id="userHiddenField" onAction="#passwordOnAction" promptText="Enter username" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
+                                       <PasswordField fx:id="usernamePasswordField" onAction="#passwordOnAction" promptText="Enter username" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
                                           <font>
                                              <Font name="Roboto Light" size="35.0" />
                                           </font>
@@ -107,7 +107,7 @@
                                              <Insets />
                                           </StackPane.margin>
                                        </PasswordField>
-                                       <TextField fx:id="userShownField" layoutX="10.0" layoutY="12.0" mouseTransparent="true" onAction="#passwordOnAction" opacity="0.0" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
+                                       <TextField fx:id="usernameTextField" layoutX="10.0" layoutY="12.0" mouseTransparent="true" onAction="#passwordOnAction" opacity="0.0" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
                                           <font>
                                              <Font name="Roboto Light" size="35.0" />
                                           </font>
@@ -123,7 +123,7 @@
                                        <Glow />
                                     </effect>
                                  </StackPane>
-                                 <Label accessibleRole="BUTTON" alignment="CENTER" onMousePressed="#toShowUserFieldPressed" onMouseReleased="#toShowUserFieldReleased" text=" ❀˖°" textFill="#766c60">
+                                 <Label fx:id="flowerUsernameButton" accessibleRole="BUTTON" alignment="CENTER" onMousePressed="#flowerPressed" onMouseReleased="#flowerReleased" text=" ❀˖°" textFill="#766c60">
                                     <font>
                                        <Font size="35.0" />
                                     </font>
@@ -154,12 +154,12 @@
                                  </Label>
                                  <StackPane prefHeight="70.0" prefWidth="450.0" style="-fx-background-color: #c0c195; -fx-background-radius: 18;">
                                     <children>
-                                       <PasswordField fx:id="passwordHiddenField" layoutX="12.0" layoutY="12.0" onAction="#passwordOnAction" promptText="Enter password" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
+                                       <PasswordField fx:id="passwordPasswordField" layoutX="12.0" layoutY="12.0" onAction="#passwordOnAction" promptText="Enter password" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
                                           <font>
                                              <Font name="Roboto Light" size="35.0" />
                                           </font>
                                        </PasswordField>
-                                       <TextField fx:id="passwordShownField" mouseTransparent="true" onAction="#passwordOnAction" opacity="0.0" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
+                                       <TextField fx:id="passwordTextField" mouseTransparent="true" onAction="#passwordOnAction" opacity="0.0" style="-fx-background-color: transparent; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b;">
                                           <font>
                                              <Font name="Roboto Light" size="35.0" />
                                           </font>
@@ -175,7 +175,7 @@
                                        <Glow />
                                     </effect>
                                  </StackPane>
-                                 <Label accessibleRole="BUTTON" onMousePressed="#toShowPasswordFieldPressed" onMouseReleased="#toShowPasswordFieldReleased" text=" ❀˖°" textFill="#766c60">
+                                 <Label fx:id="flowerPasswordButton" accessibleRole="BUTTON" onMousePressed="#flowerPressed" onMouseReleased="#flowerReleased" text=" ❀˖°" textFill="#766c60">
                                     <font>
                                        <Font size="35.0" />
                                     </font>
@@ -254,7 +254,7 @@
          <Glow level="0.32" />
       </effect>
       <StackPane.margin>
-         <Insets bottom="650.0" />
+         <Insets bottom="570.0" />
       </StackPane.margin>
    </Label>
 

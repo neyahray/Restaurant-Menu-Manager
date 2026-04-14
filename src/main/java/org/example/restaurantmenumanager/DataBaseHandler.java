@@ -1,7 +1,5 @@
 package org.example.restaurantmenumanager;
-
 import javafx.fxml.FXML;
-
 import java.lang.classfile.Label;
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,6 +19,8 @@ public class DataBaseHandler extends CommonMethods{
         return connection;
     }
 
+    //CRUD METHODS
+    //(C) CREATE TABLE
     public static void createTables() {
         String pastriesSQL = """
             CREATE TABLE IF NOT EXISTS pastries (
@@ -35,27 +35,28 @@ public class DataBaseHandler extends CommonMethods{
                 CREATE TABLE IF NOT EXISTS drinks (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
-                    price REAL NOT NULL
+                    price REAL NOT NULL,
+                    description TEXT
                 );
                 """;
 
         String insertPastriesSQL = """
                 INSERT OR IGNORE INTO pastries (id, name, price, description) VALUES 
-                (1, 'Matcha waffle', 80, 'Waffles with matcha'),
-                (2, 'Dubai chocolate muffin', 60, 'gold labubu'),
-                (3, 'Red velvet', 120, 'yummy'),
-                (4, 'Blueberry doughnut', 30, 'Dariia loves it');
+                (1, "Matcha waffle", 2.20, "Waffles with matcha"),
+                (2, "Dubai chocolate muffin", 1.80, "gold labubu"),
+                (3, "Red velvet", 2.90, "yummy"),
+                (4, "Blueberry doughnut", 0.90, "Dariia loves it");
                 """;
 
         String insertDrinksSQL = """
-                INSERT OR IGNORE INTO drinks (id, name, price) VALUES
-                (1, 'Matcha', 200),
-                (2, 'Matcha-Mango', 220),
-                (3, 'Birch sap', 50),
-                (4, 'Apple juice', 50),
-                (5, 'Orange juice', 50),
-                (6, 'Apricote compote', 70),
-                (7, 'Pineapple Energy drink', 70 (free for Dariia);
+                INSERT OR IGNORE INTO drinks (id, name, price, description) VALUES
+                (1, "Matcha", 2.50, "better with coconut milk"),
+                (2, "Matcha-Mango", 2.80, "bonfire"),
+                (3, "Birch sap", 1.20, "very niche"),
+                (4, "Apple juice", 1.50, "yummy"),
+                (5, "Orange juice", 1.50, "yummy"),
+                (6, "Apricote compote", 1.80, "grape's"),
+                (7, "Pineapple Energy drink", 1.90, "free for Dariia");
                 """;
 
         try {
@@ -70,24 +71,24 @@ public class DataBaseHandler extends CommonMethods{
         }
     }
 
-    //Methods for pastries
-    public static void addPastry(Pastry pastry) {
-        String sql = "INSERT INTO dishes (name, price, description) VALUES (?, ?, ?)";
+    //(C) CREATE AND ADD ITEM
+    public static void addItem(Item item, String tableName) {
+        String sql = "INSERT INTO " + tableName + " (name, price, description) VALUES ( ?, ?, ?)";
         try {
             PreparedStatement stmt = getConnection().prepareStatement(sql);
-            stmt.setString(1, pastry.getName());
-            stmt.setDouble(2, pastry.getPrice());
-            stmt.setString(3, pastry.getDescription());
+            stmt.setString(1, item.getName());
+            stmt.setDouble(2, item.getPrice());
+            stmt.setString(3, item.getDescription());
             stmt.executeUpdate();
-            System.out.println("Dish added!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static ArrayList<Pastry> getAllPastries() {
-        ArrayList<Pastry> pastries = new ArrayList<>();
-        String sql = "SELECT * FROM pastries";
+    //(R) GETTING DATA
+    public static ArrayList<Item> getAllItems(String tableName) {
+        ArrayList<Item> items = new ArrayList<>();
+        String sql = "SELECT * FROM " + tableName;
 
         try {
             Statement stmt = getConnection().createStatement();
@@ -99,18 +100,21 @@ public class DataBaseHandler extends CommonMethods{
                 double price = rs.getDouble("price");
                 String description = rs.getString("description");
 
-                Pastry pastry = new Pastry(id, name, price, description);
-                pastries.add(pastry);
+                if (tableName.equals("pastries")) {
+                    items.add(new Pastry(id, name, price, description));
+                } else if (tableName.equals("drinks")) {
+                    items.add(new Drink(id, name, price, description));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return pastries;
+        return items;
     }
 
+    //UPDATE (U-Update)
 
 
-    //Methods for drinks
 
-
+    //DELETE (D-Delete)
 }
