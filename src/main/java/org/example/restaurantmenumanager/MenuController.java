@@ -1,6 +1,5 @@
 package org.example.restaurantmenumanager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -11,9 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -22,30 +18,52 @@ import javafx.scene.shape.Shape;
 import javafx.geometry.Bounds;
 
 public class MenuController extends CommonMethods {
-    @FXML
-    Label toUpdateDoneLabel, toUpdateHighlight, toAddHighlightLabel, notificationMessage, toAddDoneLabel,
-          toDeleteChoiceLabel, toDeleteDoneLabel;
+    // --- MAIN LAYOUT & LAYERS ---
+    @FXML StackPane root;
+    @FXML Pane blackPane;              // Background dimming layer
+    @FXML StackPane crudStackPane;     // Main container for Add/Update/Delete windows
+    @FXML VBox stackPaneMenu;          // Main menu container (used for hole coordinates)
+    @FXML ScrollPane pastryScrollPane, drinkScrollPane;
 
-    @FXML
-    Button pastryButton, drinkButton, editMenuButton, goBackButton, backButton, nextButton,
-           toDeleteNoButton, toDeleteYesButton, toDeleteButton;
+    // --- MAIN INTERFACE BUTTONS ---
+    @FXML Button pastryButton, drinkButton;
+    @FXML Button editMenuButton, goBackButton;
 
-    @FXML
-    VBox VBoxPastry, VBoxDrink, choseOperationVBox, toAddVBox1, toAddVBox2, toDeleteVBox1, stackPaneMenu,
-         toUpdateVBox1;
+    // --- ITEM CONTAINERS (VBoxes) ---
+    @FXML VBox VBoxPastry, VBoxDrink;
 
-    @FXML
-    StackPane blackPane, crudStackPane, toAddMain, toDeleteMain, toUpdateMain;
+    // --- SHARED CRUD ELEMENTS ---
+    @FXML VBox choseOperationVBox;     // Initial window to select operation
+    @FXML Label notificationMessage;    // Global notification text
 
-    @FXML
-    TextField toAddNameTextField, toAddPriceTextField, toAddDescriptionTextField, toUpdateNameTextField,
-              toUpdatePriceTextField, toUpdateDescriptionTextField;
+    // --- ADD SECTION ---
+    @FXML StackPane toAddMain;
+    @FXML VBox toAddVBox1, toAddVBox2;
+    @FXML TextField toAddNameTextField, toAddPriceTextField, toAddDescriptionTextField;
+    @FXML Label toAddHighlightLabel, toAddDoneLabel;
+    @FXML Button backButton, nextButton;
 
-    @FXML
-    ScrollPane pastryScrollPane, drinkScrollPane;
+    // --- UPDATE SECTION ---
+    @FXML StackPane toUpdateMain;
+    @FXML VBox toUpdateVBox1;
+    @FXML TextField toUpdateNameTextField, toUpdatePriceTextField, toUpdateDescriptionTextField;
+    @FXML Label toUpdateHighlight, toUpdateDoneLabel;
+    @FXML Button backUpdateButton, nextUpdateButton;
 
+    // --- DELETE SECTION ---
+    @FXML StackPane toDeleteMain;
+    @FXML VBox toDeleteVBox1;
+    @FXML Label toDeleteChoiceLabel, toDeleteDoneLabel;
+    @FXML Button toDeleteNoButton, toDeleteYesButton, toDeleteButton;
 
+    // --- LOGIC VARIABLES (Internal) ---
     private LoginPageController loginController;
+    private String tempName;
+    private double tempPrice;
+    private String tempDescription;
+    private CommonStyledItem currentDeleteItem;
+    private CommonStyledItem currentUpdateItem;
+
 
     public void setLoginController(LoginPageController lc) {
         this.loginController = lc;
@@ -58,7 +76,6 @@ public class MenuController extends CommonMethods {
                 editMenuButton.setVisible(false);
                 loadDataFromDB();
                 pastryButton.fire();
-                break;
             }
             case CHEF -> {
                 toDeleteButton.setVisible(false);
@@ -68,14 +85,18 @@ public class MenuController extends CommonMethods {
 
                 loadDataFromDB();
                 pastryButton.fire();
-                break;
             }
             case ADMIN -> {
                 loadDataFromDB();
                 pastryButton.fire();
-                break;
             }
         }
+    }
+
+    protected enum pastryOrDrink {
+        PASTRY,
+        DRINK,
+        none
     }
 
     @FXML
@@ -90,17 +111,12 @@ public class MenuController extends CommonMethods {
         switch (currentPastryOrDrink) {
             case pastryOrDrink.PASTRY -> {
                 toAddHighlightLabel.setText("Enter " + str + " for pastry: ");
-                break;
             }
             case pastryOrDrink.DRINK -> {
                 toAddHighlightLabel.setText("Enter " + str + " for drink: ");
-                break;
             }
         }
     }
-
-    @FXML
-    private StackPane root;
 
     private void setBlackPaneHole(boolean hasHole) {
         blackPane.setOpacity(1.0);
@@ -181,32 +197,38 @@ public class MenuController extends CommonMethods {
         loginController.goBackButton.setVisible(false);
     }
 
-    @FXML
-    protected void xClicked() {
-        notificationMessage.setTranslateY(0);
-
-        crudStackPane.setVisible(false);
-        choseOperationVBox.setVisible(true);
-
+    private void resetAddSection() {
         toAddMain.setVisible(false);
         toAddVBox1.setVisible(true);
         toAddVBox2.setVisible(false);
         toAddDoneLabel.setVisible(false);
-        blackPane.setVisible(false);
+    }
 
+    private void resetDeleteSection() {
         setDeleteMode(false);
         toDeleteMain.setVisible(false);
         toDeleteVBox1.setVisible(true);
         toDeleteDoneLabel.setVisible(false);
+    }
 
+    private void resetUpdateSection() {
         setUpdatePencil(false);
         toUpdateMain.setVisible(false);
         toUpdateVBox1.setVisible(true);
         toUpdateDoneLabel.setVisible(false);
+    }
 
-        editMenuButton.setVisible(true);
+    @FXML
+    protected void xClicked() {
+        resetAddSection();
+        resetDeleteSection();
+        resetUpdateSection();
+
+        crudStackPane.setVisible(false);
+        choseOperationVBox.setVisible(true);
+        blackPane.setVisible(false);
         editMenuButton.setMouseTransparent(false);
-
+        notificationMessage.setTranslateY(0);
         loginController.goBackButton.setVisible(true);
     }
 
@@ -277,11 +299,7 @@ public class MenuController extends CommonMethods {
 
 
 
-    protected enum pastryOrDrink {
-        PASTRY,
-        DRINK,
-        none
-    }
+
 
     protected static pastryOrDrink currentPastryOrDrink = pastryOrDrink.none;
 
@@ -426,11 +444,6 @@ public class MenuController extends CommonMethods {
         }
     }
 
-    private String tempName;
-    private double tempPrice;
-    private String tempDescription;
-    private CommonStyledItem currentDeleteItem;
-    private CommonStyledItem currentUpdateItem;
 
     @FXML
     protected void BackNextButtonClicked(MouseEvent event) {
@@ -451,7 +464,6 @@ public class MenuController extends CommonMethods {
                         } else {
                             enteredInputCheckToPrintForAdd();
                         }
-                        break;
                     }
                     case toAddInputPage.inputPrice -> {
                         if (enteredInputCheck(toAddPriceTextField.getText(), "number")) {
@@ -464,8 +476,6 @@ public class MenuController extends CommonMethods {
                         } else {
                             enteredInputCheckToPrintForAdd();
                         }
-
-                        break;
                     }
                     case toAddInputPage.inputDescription -> {
                         if (enteredInputCheck(toAddDescriptionTextField.getText(), "text")) {
@@ -504,7 +514,6 @@ public class MenuController extends CommonMethods {
                         } else {
                             enteredInputCheckToPrintForAdd();
                         }
-                        break;
                     }
                 }
                 break;
@@ -514,7 +523,6 @@ public class MenuController extends CommonMethods {
                         toAddNameTextField.clear();
                         toAddVBox2.setVisible(false);
                         toAddVBox1.setVisible(true);
-                        break;
                     }
                     case toAddInputPage.inputPrice -> {
                         toAddPriceTextField.clear();
@@ -522,7 +530,6 @@ public class MenuController extends CommonMethods {
                         currentToAddInputPage = toAddInputPage.inputName;
                         toAddNameTextField.setVisible(true);
                         setTextHighlight("name");
-                        break;
                     }
                     case toAddInputPage.inputDescription -> {
                         toAddDescriptionTextField.clear();
@@ -530,13 +537,11 @@ public class MenuController extends CommonMethods {
                         currentToAddInputPage = toAddInputPage.inputPrice;
                         toAddPriceTextField.setVisible(true);
                         setTextHighlight("price");
-                        break;
                     }
                 }
                 break;
         }
     }
-
 
 
 

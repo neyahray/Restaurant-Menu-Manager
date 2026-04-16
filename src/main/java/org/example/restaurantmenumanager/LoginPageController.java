@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
