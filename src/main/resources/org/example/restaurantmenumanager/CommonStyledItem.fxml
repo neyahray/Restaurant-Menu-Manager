@@ -2,73 +2,85 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="800.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="itemHBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1000.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <VBox alignment="CENTER_LEFT" prefWidth="30.0">
-         <children>
-              <Label fx:id="id" alignment="CENTER" style="-fx-text-fill: #847b54;" text="id" wrapText="true">
-                  <font>
-                  <Font name="Trebuchet MS Bold" size="30.0" />
-               </font>
-              </Label>
-         </children>
-         <HBox.margin>
-            <Insets left="20.0" right="60.0" />
-         </HBox.margin>
-      </VBox>
-      <VBox alignment="CENTER_LEFT" prefWidth="300.0">
-         <children>
-              <Label fx:id="name" style="-fx-text-fill: #847b54;" text="name" wrapText="true">
-                  <font>
-                  <Font name="Trebuchet MS Bold" size="30.0" />
-               </font>
+        <Pane HBox.hgrow="ALWAYS" />
+
+        <VBox alignment="CENTER_LEFT" maxWidth="60.0" minWidth="60.0" prefWidth="60.0">
+            <children>
+                <Label fx:id="id" alignment="CENTER" style="-fx-text-fill: #847b54;" text="id" wrapText="true">
+                    <font> <Font name="Trebuchet MS Bold" size="26.0" /> </font>
+                </Label>
+            </children>
+            <HBox.margin> <Insets left="10.0" right="20.0" /> </HBox.margin>
+        </VBox>
+
+        <VBox alignment="CENTER_LEFT" maxWidth="250.0" minWidth="250.0" prefWidth="250.0">
+            <children>
+                <Label fx:id="name" style="-fx-text-fill: #847b54;" text="name" wrapText="true">
+                    <font> <Font name="Trebuchet MS Bold" size="26.0" /> </font>
                <padding>
                   <Insets right="50.0" />
                </padding>
-              </Label>
-         </children>
-         <HBox.margin>
-            <Insets right="30.0" />
-         </HBox.margin>
-      </VBox>
-      <VBox alignment="CENTER_LEFT" prefWidth="170.0">
-         <children>
-              <Label fx:id="price" style="-fx-text-fill: #847b54;" text="price" wrapText="true">
-                  <font>
-                  <Font name="Trebuchet MS Bold" size="30.0" />
-               </font>
+                </Label>
+            </children>
+            <HBox.margin> <Insets right="30.0" /> </HBox.margin>
+        </VBox>
+
+        <VBox alignment="CENTER_LEFT" maxWidth="120.0" minWidth="120.0" prefWidth="120.0">
+            <children>
+                <Label fx:id="price" minWidth="-Infinity" style="-fx-text-fill: #847b54;" text="price" wrapText="true">
+                    <font> <Font name="Trebuchet MS Bold" size="26.0" /> </font>
                <VBox.margin>
-                  <Insets />
+                  <Insets left="15.0" />
                </VBox.margin>
+                </Label>
+            </children>
+            <HBox.margin> <Insets right="30.0" /> </HBox.margin>
+        </VBox>
+
+        <VBox alignment="CENTER_LEFT" maxWidth="310.0" minWidth="310.0" prefWidth="310.0">
+            <children>
+                <Label fx:id="description" style="-fx-text-fill: #847b54;" text="description" wrapText="true">
+                    <font> <Font name="Trebuchet MS Bold" size="22.0" /> </font>
                <padding>
-                  <Insets left="30.0" />
+                  <Insets left="30.0" right="30.0" />
                </padding>
-              </Label>
-         </children>
-         <HBox.margin>
-            <Insets right="40.0" />
-         </HBox.margin>
-      </VBox>
-      <VBox alignment="CENTER_LEFT" prefWidth="300.0">
+                </Label>
+            </children>
+            <HBox.margin> <Insets right="10.0" /> </HBox.margin>
+        </VBox>
+      <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
-              <Label fx:id="description" style="-fx-text-fill: #847b54;" text="description" wrapText="true">
-                  <font>
-                  <Font name="Trebuchet MS Bold" size="30.0" />
+      
+              <Button fx:id="deleteDash" managed="true" minWidth="50.0" mnemonicParsing="false" style="-fx-background-color: #ff8c8c; -fx-text-fill: white; -fx-background-radius: 12;" text="✖" visible="false">
+                  <padding>
+                      <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+                  </padding>
+                  <font> <Font name="System Bold" size="18.0" /> </font>
+                  <effect> <Glow /> </effect>
+              </Button>
+            <Button fx:id="updatePencil" managed="true" minWidth="50.0" mnemonicParsing="false" style="-fx-background-color: #ff8c8c; -fx-text-fill: white; -fx-background-radius: 12; -fx-scale-x: -1;" text="✎" visible="false">
+               <padding>
+                  <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="18.0" />
                </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-              </Label>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
          </children>
-         <HBox.margin>
-            <Insets />
-         </HBox.margin>
-         <padding>
-            <Insets left="50.0" />
-         </padding>
-      </VBox>
+      </StackPane>
+
+        <Pane HBox.hgrow="ALWAYS" />
     </children>
+    <padding>
+        <Insets left="20.0" right="20.0" />
+    </padding>
 </fx:root>

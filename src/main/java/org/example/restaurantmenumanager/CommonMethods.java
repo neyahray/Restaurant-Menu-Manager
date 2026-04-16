@@ -3,19 +3,10 @@ package org.example.restaurantmenumanager;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-
-import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class CommonMethods {
     public enum UserRole {
@@ -77,8 +68,4 @@ public class CommonMethods {
             }
         });
     }
-
-
-
-
 }

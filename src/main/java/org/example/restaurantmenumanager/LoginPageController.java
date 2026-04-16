@@ -6,12 +6,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +18,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class LoginPageController extends CommonMethods{
+
+
+public class LoginPageController extends CommonMethods {
+    @FXML
+    Label flowerUsernameButton, flowerPasswordButton;
+    @FXML
+    Button goBackButton;
+    @FXML
+    TextField usernameTextField, passwordTextField;
+    @FXML
+    PasswordField usernamePasswordField, passwordPasswordField;
+    @FXML
+    VBox choiceVBox, passwordVBox, loginVBox;
+    @FXML
+    StackPane mainStackPane;
+
+
     @FXML
     protected void enteredMouseChoiceButton(MouseEvent event) {
         Node source = (Node) event.getSource();
@@ -45,11 +59,6 @@ public class LoginPageController extends CommonMethods{
         buttonReleased(source);
     }
 
-    @FXML
-    VBox choiceVBox;
-    @FXML
-    StackPane mainStackPane;
-
 
     protected void toSetStage(String fileName) {
         URL resource = getClass().getResource(fileName);
@@ -57,7 +66,10 @@ public class LoginPageController extends CommonMethods{
             notification("Oh, something went wrong! Please, try a little bit later");
         } else {
             try {
-                Node guestPage = FXMLLoader.load(getClass().getResource(fileName));
+                FXMLLoader loader = new FXMLLoader(resource);
+                Node guestPage = loader.load();
+                MenuController menuController = loader.getController();
+                menuController.setLoginController(this);
                 mainStackPane.getChildren().clear();
                 mainStackPane.getChildren().add(guestPage);
             } catch (IOException e) {
@@ -67,18 +79,6 @@ public class LoginPageController extends CommonMethods{
             }
         }
     }
-
-    @FXML
-    VBox passwordVBox;
-
-    @FXML
-    Label flowerUsernameButton, flowerPasswordButton;
-
-    @FXML
-    TextField usernameTextField, passwordTextField;
-
-    @FXML
-    PasswordField usernamePasswordField, passwordPasswordField;
 
     protected void toShowText(TextField textField, PasswordField passwordField) {
         textField.setText(passwordField.getText());
@@ -110,9 +110,11 @@ public class LoginPageController extends CommonMethods{
             case "flowerUsernameButton":
                 playScaleAnimation(source, 0.9);
                 toShowText(usernameTextField, usernamePasswordField);
+                break;
             case "flowerPasswordButton":
                 playScaleAnimation(source, 0.9);
                 toShowText(passwordTextField, passwordPasswordField);
+                break;
         }
     }
 
@@ -124,9 +126,11 @@ public class LoginPageController extends CommonMethods{
             case "flowerUsernameButton":
                 playScaleAnimation(source, 1.09);
                 toHideText(usernameTextField, usernamePasswordField);
+                break;
             case "flowerPasswordButton":
                 playScaleAnimation(source, 1.09);
                 toHideText(passwordTextField, passwordPasswordField);
+                break;
         }
     }
 
@@ -217,20 +221,9 @@ public class LoginPageController extends CommonMethods{
     }
 
     protected void passwordOnActionShown(TextField textField) {
-//        textField.setOnKeyPressed(event -> {
-//            if (event.getCode() == KeyCode.ENTER) {
-//                passwordCheck();
-//            }
-//        });
         enterKBoard(textField, this::passwordCheck);
     }
     protected void passwordOnActionHidden(PasswordField passwordField) {
-//        passwordField.setOnKeyPressed(event -> {
-//            if (event.getCode() == KeyCode.ENTER) {
-//                passwordCheck();
-//            }
-//        });
-
         enterKBoard(passwordField,this::passwordCheck);
     }
 
@@ -242,11 +235,6 @@ public class LoginPageController extends CommonMethods{
         passwordOnActionHidden(passwordPasswordField);
     }
 
-    @FXML
-    Button goBackButton;
-
-    @FXML
-    VBox loginVBox;
     private List<Node> menuItems = new ArrayList<>();
 
 

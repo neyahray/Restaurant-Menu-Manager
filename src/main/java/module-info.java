@@ -5,6 +5,7 @@ module org.example.restaurantmenumanager {
     requires javafx.graphics;
     requires javafx.base;
     requires java.sql;
+    requires java.desktop;
 
 
     opens org.example.restaurantmenumanager to javafx.fxml;

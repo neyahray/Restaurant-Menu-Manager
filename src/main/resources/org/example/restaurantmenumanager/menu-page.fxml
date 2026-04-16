@@ -59,142 +59,140 @@
                      <Insets bottom="20.0" />
                   </VBox.margin>
                </HBox>
-               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fefaf1; -fx-background-radius: 18 18 0 0;">
-                   <VBox alignment="CENTER_LEFT" prefWidth="30.0">
-                       <children>
-                           <Label fx:id="id" alignment="CENTER" text="❀" textFill="#ff8c8c" wrapText="true">
-                               <font>
-                                   <Font name="Trebuchet MS Bold" size="20.0" />
-                               </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           </Label>
-                       </children>
-                       <HBox.margin>
-                           <Insets left="60.0" right="60.0" />
-                       </HBox.margin>
-                   </VBox>
-                   <VBox alignment="CENTER_LEFT" prefWidth="300.0">
-                       <children>
-                           <Label fx:id="name" text="name" textFill="#ff8c8c" wrapText="true">
-                               <font>
-                                   <Font name="Trebuchet MS Bold" size="20.0" />
-                               </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="30.0" />
-                           </padding>
-                           </Label>
-                       </children>
-                       <HBox.margin>
-                           <Insets right="30.0" />
-                       </HBox.margin>
-                   </VBox>
-                   <VBox alignment="CENTER_LEFT" prefWidth="170.0">
-                       <children>
-                           <Label fx:id="price" text="price" textFill="#ff8c8c" wrapText="true">
-                               <font>
-                                   <Font name="Trebuchet MS Bold" size="20.0" />
-                               </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="75.0" />
-                           </padding>
-                           </Label>
-                       </children>
-                       <HBox.margin>
-                           <Insets right="40.0" />
-                       </HBox.margin>
-                   </VBox>
-                   <VBox alignment="CENTER_LEFT" prefWidth="400.0">
-                       <children>
-                           <Label fx:id="description" accessibleRole="BUTTON" text="description" textFill="#ff8c8c" wrapText="true">
-                               <font>
-                                   <Font name="Trebuchet MS Bold" size="20.0" />
-                               </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                           <VBox.margin>
-                              <Insets left="30.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
-                           </Label>
-                       </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                   </VBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="editMenuButton" mnemonicParsing="false" onAction="#editMenuButtonOnAction" style="-fx-background-color: transparent; -fx-background: transparent;" text="edit menu" textFill="#ff8c8c">
-                           <effect>
-                              <Glow />
-                           </effect>
-                           <font>
-                              <Font name="Trebuchet MS Bold" size="20.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets right="30.0" />
-                     </padding>
-                  </HBox>
-                  <VBox.margin>
-                     <Insets top="30.0" />
-                  </VBox.margin>
-                  <padding>
-                     <Insets bottom="10.0" top="10.0" />
-                  </padding>
-               </HBox>
-               <StackPane prefHeight="800.0" prefWidth="200.0" style="-fx-background-radius: 0 0 18 18; -fx-border-radius: 0 0 18 18; -fx-background-color: #d3d4b5;">
+               <VBox fx:id="stackPaneMenu">
                   <children>
-                     <ScrollPane fx:id="pastryScrollPane" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background: transparent;">
-                        <content>
-                           <VBox fx:id="VBoxPastry" />
-                        </content>
+                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fefaf1; -fx-background-radius: 18 18 0 0;">
+                         <VBox alignment="CENTER_LEFT" prefWidth="30.0">
+                             <children>
+                                 <Label fx:id="id" alignment="CENTER" text="❀" textFill="#ff8c8c" wrapText="true">
+                                     <font>
+                                         <Font name="Trebuchet MS Bold" size="20.0" />
+                                     </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 </Label>
+                             </children>
+                             <HBox.margin>
+                                 <Insets left="60.0" right="40.0" />
+                             </HBox.margin>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                         </VBox>
+                         <VBox alignment="CENTER_LEFT" prefWidth="300.0">
+                             <children>
+                                 <Label fx:id="name" text="name" textFill="#ff8c8c" wrapText="true">
+                                     <font>
+                                         <Font name="Trebuchet MS Bold" size="20.0" />
+                                     </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="30.0" />
+                                 </padding>
+                                 </Label>
+                             </children>
+                             <HBox.margin>
+                                 <Insets right="15.0" />
+                             </HBox.margin>
+                         </VBox>
+                         <VBox alignment="CENTER_LEFT" prefWidth="170.0">
+                             <children>
+                                 <Label fx:id="price" text="price" textFill="#ff8c8c" wrapText="true">
+                                     <font>
+                                         <Font name="Trebuchet MS Bold" size="20.0" />
+                                     </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                                 </Label>
+                             </children>
+                             <HBox.margin>
+                                 <Insets />
+                             </HBox.margin>
+                         </VBox>
+                         <VBox alignment="CENTER_LEFT" maxWidth="260.0" HBox.hgrow="ALWAYS">
+                             <children>
+                                 <Label text="description" textFill="#ff8c8c" wrapText="true">
+                                     <font>
+                                         <Font name="Trebuchet MS Bold" size="20.0" />
+                                     </font>
+                                     <effect>
+                                         <Glow />
+                                     </effect>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 </Label>
+                             </children>
+                         </VBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="editMenuButton" mnemonicParsing="false" onAction="#editMenuButtonOnAction" style="-fx-background-color: transparent; -fx-background: transparent;" text="edit menu" textFill="#ff8c8c">
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                                 <font>
+                                    <Font name="Trebuchet MS Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets right="30.0" />
+                           </padding>
+                        </HBox>
+                        <VBox.margin>
+                           <Insets top="30.0" />
+                        </VBox.margin>
                         <padding>
-                           <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
+                           <Insets bottom="10.0" top="10.0" />
                         </padding>
-                        <StackPane.margin>
-                           <Insets />
-                        </StackPane.margin>
-                     </ScrollPane>
-                     <ScrollPane fx:id="drinkScrollPane" fitToWidth="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background: transparent;" visible="false">
-                        <content>
-                           <VBox fx:id="VBoxDrink" />
-                        </content>
-                        <padding>
-                           <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
-                        </padding>
-                        <StackPane.margin>
-                           <Insets />
-                        </StackPane.margin>
-                     </ScrollPane>
+                     </HBox>
+                     <StackPane prefHeight="800.0" prefWidth="200.0" style="-fx-background-radius: 0 0 18 18; -fx-border-radius: 0 0 18 18; -fx-background-color: #d3d4b5;">
+                        <children>
+                           <ScrollPane fx:id="pastryScrollPane" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background: transparent;">
+                              <content>
+                                 <VBox fx:id="VBoxPastry" alignment="CENTER" />
+                              </content>
+                              <padding>
+                                 <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
+                              </padding>
+                              <StackPane.margin>
+                                 <Insets />
+                              </StackPane.margin>
+                           </ScrollPane>
+                           <ScrollPane fx:id="drinkScrollPane" fitToWidth="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background: transparent;" visible="false">
+                              <content>
+                                 <VBox fx:id="VBoxDrink" alignment="CENTER" />
+                              </content>
+                              <padding>
+                                 <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
+                              </padding>
+                              <StackPane.margin>
+                                 <Insets />
+                              </StackPane.margin>
+                           </ScrollPane>
+                        </children>
+                     </StackPane>
                   </children>
-               </StackPane>
+               </VBox>
             </children>
             <StackPane.margin>
                <Insets bottom="250.0" left="400.0" right="400.0" top="200.0" />
@@ -204,7 +202,7 @@
 
 </StackPane>
 
-<Button fx:id="goBackButton" ellipsisString="" mnemonicParsing="false" style="-fx-background-color: #fefaf1; -fx-background-radius: 16px;" text="To Main Page" textAlignment="CENTER" textFill="#ff8c8c" StackPane.alignment="TOP_LEFT">
+<Button fx:id="goBackButton" ellipsisString="" mnemonicParsing="false" onMouseClicked="#goBackButtonClicked" style="-fx-background-color: #fefaf1; -fx-background-radius: 16px;" text="To Main Page" textAlignment="CENTER" textFill="#ff8c8c" StackPane.alignment="TOP_LEFT">
  <font>
      <Font name="Trebuchet MS Bold" size="25.0" />
  </font>
@@ -215,15 +213,18 @@
          <Glow />
       </effect>
 </Button>
-   <Pane fx:id="blackPane" opacity="0.35" style="-fx-background-color: black;" visible="false" StackPane.alignment="CENTER" />
+    <StackPane fx:id="blackPane" opacity="0.35" prefHeight="1120.0" prefWidth="1960.0" style="-fx-background-color: black;" visible="false" />
    <StackPane fx:id="crudStackPane" style="-fx-background-color: #fefaf1; -fx-background-radius: 18;" visible="false" StackPane.alignment="CENTER">
       <children>
          <VBox fx:id="choseOperationVBox" alignment="CENTER" onMousePressed="#crudButtonPressed" prefHeight="200.0" prefWidth="100.0">
             <children>
-               <Label alignment="TOP_CENTER" text="Choose an operation:" textFill="#6b6b5d">
+               <Label alignment="TOP_CENTER" maxWidth="550.0" text="Choose an operation:" textAlignment="CENTER" textFill="#6b6b5d" wrapText="true">
                   <font>
-                     <Font name="Trebuchet MS Bold" size="27.0" />
+                     <Font name="Trebuchet MS Bold" size="33.0" />
                   </font>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
                </Label>
                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                   <children>
@@ -258,6 +259,9 @@
                         </padding>
                      </Button>
                   </children>
+                  <VBox.margin>
+                     <Insets top="20.0" />
+                  </VBox.margin>
                </HBox>
             </children>
             <padding>
@@ -268,7 +272,7 @@
             <children>
                <VBox fx:id="toAddVBox1" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="false">
                   <children>
-                     <Label alignment="TOP_CENTER" text="You want to add:" textFill="#6b6b5d">
+                     <Label alignment="TOP_CENTER" maxWidth="550.0" text="You want to add:" textAlignment="CENTER" textFill="#6b6b5d" wrapText="true">
                         <font>
                            <Font name="Trebuchet MS Bold" size="37.0" />
                         </font>
@@ -303,17 +307,17 @@
                </VBox>
                <VBox fx:id="toAddVBox2" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="false" StackPane.alignment="CENTER">
                   <children>
-                     <Label fx:id="toAddHighlightLabel" alignment="CENTER" text="Enter a name for" textFill="#6b6b5d">
+                     <Label fx:id="toAddHighlightLabel" alignment="CENTER" maxWidth="550.0" text="Enter a name for" textAlignment="CENTER" textFill="#6b6b5d" wrapText="true">
                         <font>
                            <Font name="Trebuchet MS Bold" size="37.0" />
                         </font>
                         <VBox.margin>
-                           <Insets top="30.0" />
+                           <Insets />
                         </VBox.margin>
                      </Label>
-                     <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <StackPane prefWidth="200.0">
                         <children>
-                           <TextField fx:id="toAddNameTextField" maxWidth="300.0" onAction="#toAddTextFieldOnAction" promptText="here!" style="-fx-background-color: #c0c195; -fx-background-radius: 18; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b; -fx-text-overrun: clip;">
+                           <TextField fx:id="toAddNameTextField" maxWidth="300.0" promptText="here!" style="-fx-background-color: #c0c195; -fx-background-radius: 18; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b; -fx-text-overrun: clip;">
                               <effect>
                                  <Glow />
                               </effect>
@@ -321,7 +325,7 @@
                                  <Font name="Roboto Light" size="26.0" />
                               </font>
                            </TextField>
-                           <TextField fx:id="toAddPriceTextField" maxWidth="300.0" onAction="#toAddTextFieldOnAction" promptText="here!" style="-fx-background-color: #c0c195; -fx-background-radius: 18; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b; -fx-text-overrun: clip;" visible="false">
+                           <TextField fx:id="toAddPriceTextField" maxWidth="300.0" promptText="here!" style="-fx-background-color: #c0c195; -fx-background-radius: 18; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b; -fx-text-overrun: clip;" visible="false">
                               <effect>
                                  <Glow />
                               </effect>
@@ -329,7 +333,7 @@
                                  <Font name="Roboto Light" size="26.0" />
                               </font>
                            </TextField>
-                           <TextField fx:id="toAddDescriptionTextField" maxWidth="300.0" onAction="#toAddTextFieldOnAction" promptText="here!" style="-fx-background-color: #c0c195; -fx-background-radius: 18; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b; -fx-text-overrun: clip;" visible="false">
+                           <TextField fx:id="toAddDescriptionTextField" maxWidth="300.0" promptText="here!" style="-fx-background-color: #c0c195; -fx-background-radius: 18; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b; -fx-text-overrun: clip;" visible="false">
                               <effect>
                                  <Glow />
                               </effect>
@@ -339,7 +343,7 @@
                            </TextField>
                         </children>
                         <VBox.margin>
-                           <Insets />
+                           <Insets top="50.0" />
                         </VBox.margin>
                      </StackPane>
                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -373,15 +377,147 @@
                      <Insets />
                   </StackPane.margin>
                </VBox>
-               <VBox fx:id="toAddVBox3" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="false">
+               <Label fx:id="toAddDoneLabel" alignment="TOP_CENTER" maxWidth="550.0" text="New _ added! Check menu" textAlignment="CENTER" textFill="#6b6b5d" visible="false" wrapText="true">
+                  <font>
+                     <Font name="Trebuchet MS Bold" size="37.0" />
+                  </font>
+               </Label>
+            </children>
+         </StackPane>
+         <StackPane fx:id="toUpdateMain" prefHeight="150.0" prefWidth="200.0" visible="false">
+            <children>
+               <VBox fx:id="toUpdateVBox1" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="false">
                   <children>
-                     <Label fx:id="toAddDoneLabel" alignment="CENTER" text="New _ added! Check menu" textFill="#6b6b5d">
+                     <Label fx:id="toUpdateHighlight" alignment="TOP_CENTER" maxWidth="550.0" text="Updating" textAlignment="CENTER" textFill="#6b6b5d" wrapText="true">
+                        <font>
+                           <Font name="Trebuchet MS Bold" size="37.0" />
+                        </font>
+                        <VBox.margin>
+                           <Insets />
+                        </VBox.margin>
+                     </Label>
+                     <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="10.0" prefWidth="200.0" vgap="10.0">
+                        <children>
+                           <TextField fx:id="toUpdateNameTextField" maxWidth="300.0" promptText="name" style="-fx-background-color: #c0c195; -fx-background-radius: 18; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b; -fx-text-overrun: clip;">
+                              <effect>
+                                 <Glow />
+                              </effect>
+                              <font>
+                                 <Font name="Roboto Light" size="26.0" />
+                              </font>
+                              <FlowPane.margin>
+                                 <Insets />
+                              </FlowPane.margin>
+                           </TextField>
+                           <TextField fx:id="toUpdatePriceTextField" maxWidth="300.0" promptText="price" style="-fx-background-color: #c0c195; -fx-background-radius: 18; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b; -fx-text-overrun: clip;">
+                              <effect>
+                                 <Glow />
+                              </effect>
+                              <font>
+                                 <Font name="Roboto Light" size="26.0" />
+                              </font>
+                              <FlowPane.margin>
+                                 <Insets />
+                              </FlowPane.margin>
+                           </TextField>
+                           <TextField fx:id="toUpdateDescriptionTextField" maxWidth="300.0" promptText="description" style="-fx-background-color: #c0c195; -fx-background-radius: 18; -fx-prompt-text-fill: #443f3b; -fx-text-fill: #443f3b; -fx-text-overrun: clip;">
+                              <effect>
+                                 <Glow />
+                              </effect>
+                              <font>
+                                 <Font name="Roboto Light" size="26.0" />
+                              </font>
+                              <FlowPane.margin>
+                                 <Insets />
+                              </FlowPane.margin>
+                           </TextField>
+                        </children>
+                        <VBox.margin>
+                           <Insets top="30.0" />
+                        </VBox.margin>
+                     </FlowPane>
+                     <HBox alignment="CENTER" prefWidth="200.0">
+                        <children>
+                           <Button fx:id="backUpdateButton" mnemonicParsing="false" onMouseClicked="#UpdateBackNextButtonClicked" onMouseEntered="#crudButtonEntered" onMouseExited="#crudButtonExited" onMousePressed="#crudButtonPressed" onMouseReleased="#crudButtonReleased" style="-fx-background-color: #fff0e9; -fx-background-radius: 18;" text="&lt;— Back" textFill="#ff8c8c">
+                              <font>
+                                 <Font name="Trebuchet MS Bold" size="23.0" />
+                              </font>
+                              <padding>
+                                 <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+                              </padding>
+                              <HBox.margin>
+                                 <Insets right="100.0" />
+                              </HBox.margin>
+                           </Button>
+                           <Button fx:id="nextUpdateButton" mnemonicParsing="false" onMouseClicked="#UpdateBackNextButtonClicked" onMouseEntered="#crudButtonEntered" onMouseExited="#crudButtonExited" onMousePressed="#crudButtonPressed" onMouseReleased="#crudButtonReleased" style="-fx-background-color: #fff0e9; -fx-background-radius: 18;" text="Next —&gt;" textFill="#ff8c8c">
+                              <font>
+                                 <Font name="Trebuchet MS Bold" size="23.0" />
+                              </font>
+                              <padding>
+                                 <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+                              </padding>
+                              <HBox.margin>
+                                 <Insets left="100.0" />
+                              </HBox.margin>
+                           </Button>
+                        </children>
+                        <VBox.margin>
+                           <Insets top="30.0" />
+                        </VBox.margin>
+                     </HBox>
+                  </children>
+               </VBox>
+               <Label fx:id="toUpdateDoneLabel" alignment="TOP_CENTER" maxWidth="550.0" text="_ updated! Check Menu" textAlignment="CENTER" textFill="#6b6b5d" visible="false" wrapText="true">
+                  <font>
+                     <Font name="Trebuchet MS Bold" size="37.0" />
+                  </font>
+               </Label>
+            </children></StackPane>
+         <StackPane fx:id="toDeleteMain" prefHeight="150.0" prefWidth="200.0" visible="false">
+            <children>
+               <VBox fx:id="toDeleteVBox1" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                     <Label fx:id="toDeleteChoiceLabel" alignment="TOP_CENTER" maxWidth="550.0" text="Are you sure you want to delete _?" textAlignment="CENTER" textFill="#6b6b5d" wrapText="true">
                         <font>
                            <Font name="Trebuchet MS Bold" size="37.0" />
                         </font>
                      </Label>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Button fx:id="toDeleteNoButton" layoutX="109.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#toDeleteChoiceButtonClicked" onMouseEntered="#crudButtonEntered" onMouseExited="#crudButtonExited" onMousePressed="#crudButtonPressed" onMouseReleased="#crudButtonReleased" style="-fx-background-color: #fff0e9; -fx-background-radius: 18;" text="No" textFill="#ff8c8c">
+                              <font>
+                                 <Font name="Trebuchet MS Bold" size="23.0" />
+                              </font>
+                              <padding>
+                                 <Insets bottom="15.0" left="50.0" right="50.0" top="15.0" />
+                              </padding>
+                              <HBox.margin>
+                                 <Insets right="30.0" />
+                              </HBox.margin>
+                           </Button>
+                           <Button fx:id="toDeleteYesButton" mnemonicParsing="false" onMouseClicked="#toDeleteChoiceButtonClicked" onMouseEntered="#crudButtonEntered" onMouseExited="#crudButtonExited" onMousePressed="#crudButtonPressed" onMouseReleased="#crudButtonReleased" style="-fx-background-color: #fff0e9; -fx-background-radius: 18;" text="Yes" textFill="#ff8c8c">
+                              <font>
+                                 <Font name="Trebuchet MS Bold" size="23.0" />
+                              </font>
+                              <HBox.margin>
+                                 <Insets left="30.0" />
+                              </HBox.margin>
+                              <padding>
+                                 <Insets bottom="15.0" left="50.0" right="50.0" top="15.0" />
+                              </padding>
+                           </Button>
+                        </children>
+                        <VBox.margin>
+                           <Insets />
+                        </VBox.margin>
+                     </HBox>
                   </children>
                </VBox>
+               <Label fx:id="toDeleteDoneLabel" alignment="TOP_CENTER" maxWidth="550.0" text="_ deleted! Check Menu" textAlignment="CENTER" textFill="#6b6b5d" visible="false" wrapText="true">
+                  <font>
+                     <Font name="Trebuchet MS Bold" size="37.0" />
+                  </font>
+               </Label>
             </children>
          </StackPane>
          <ImageView fx:id="XButton" accessibleRole="BUTTON" fitHeight="70.0" fitWidth="70.0" onMouseClicked="#xClicked" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
@@ -394,11 +530,10 @@
          </ImageView>
       </children>
       <StackPane.margin>
-         <Insets bottom="400.0" left="600.0" right="600.0" top="400.0" />
+         <Insets bottom="365.0" left="600.0" right="600.0" top="365.0" />
       </StackPane.margin>
    </StackPane>
-
-    <Label fx:id="notificationMessage" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="0.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.0" textFill="#48372f">
+    <Label fx:id="notificationMessage" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="0.0" mouseTransparent="true" nodeOrientation="LEFT_TO_RIGHT" opacity="0.0" textFill="#48372f">
         <font>
             <Font name="Trebuchet MS Bold" size="25.0" />
         </font>
@@ -406,7 +541,7 @@
             <Glow level="0.32" />
         </effect>
         <StackPane.margin>
-            <Insets bottom="570.0" />
+            <Insets bottom="90.0" />
         </StackPane.margin>
     </Label>
 </StackPane>
