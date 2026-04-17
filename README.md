@@ -1,6 +1,6 @@
 # Restaurant Menu Manager
 
-**Student Name:** Tashbaeva Ayana
+**Student Name:** Tashbaeva Ayana,
 **Group:** COMSE-25
 
 ## Description
