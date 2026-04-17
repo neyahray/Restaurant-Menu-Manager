@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
-
 public class LoginPageController extends CommonMethods {
     @FXML
     Label flowerUsernameButton, flowerPasswordButton;
@@ -33,7 +31,7 @@ public class LoginPageController extends CommonMethods {
     @FXML
     StackPane mainStackPane;
 
-
+    //functional for buttons
     @FXML
     protected void enteredMouseChoiceButton(MouseEvent event) {
         Node source = (Node) event.getSource();
@@ -60,22 +58,17 @@ public class LoginPageController extends CommonMethods {
 
 
     protected void toSetStage(String fileName) {
-        URL resource = getClass().getResource(fileName);
-        if (resource == null) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
+            Node guestPage = loader.load();
+            MenuController menuController = loader.getController();
+            menuController.setLoginController(this);
+            mainStackPane.getChildren().clear();
+            mainStackPane.getChildren().add(guestPage);
+        } catch (IOException e) {
+            choiceVBox.setVisible(true);
+            System.out.println(e.getMessage());
             notification("Oh, something went wrong! Please, try a little bit later");
-        } else {
-            try {
-                FXMLLoader loader = new FXMLLoader(resource);
-                Node guestPage = loader.load();
-                MenuController menuController = loader.getController();
-                menuController.setLoginController(this);
-                mainStackPane.getChildren().clear();
-                mainStackPane.getChildren().add(guestPage);
-            } catch (IOException e) {
-                choiceVBox.setVisible(true);
-                System.out.println(e.getMessage());
-                notification("Oh, something went wrong! Please, try a little bit later");
-            }
         }
     }
 
