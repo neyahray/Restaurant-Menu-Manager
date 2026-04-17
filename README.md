@@ -1,7 +1,7 @@
 # Restaurant Menu Manager
 
 **Student Name:** Tashbaeva Ayana
-**Group:** COMSE-25
+* **Group:** COMSE-25
 
 ## Description
 **Restaurant Menu Manager** is a JavaFX-based desktop application designed to streamline the management of a restaurant's product offerings. The application provides an interactive interface for viewing and managing menu items categorized into Pastries and Drinks.
