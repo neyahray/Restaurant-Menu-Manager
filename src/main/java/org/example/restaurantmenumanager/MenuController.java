@@ -16,45 +16,37 @@ import javafx.scene.shape.Shape;
 import javafx.geometry.Bounds;
 
 public class MenuController extends CommonMethods {
-    // --- MAIN LAYOUT & LAYERS ---
     @FXML StackPane root;
-    @FXML Pane blackPane;              // Background dimming layer
-    @FXML StackPane crudStackPane;     // Main container for Add/Update/Delete windows
-    @FXML VBox stackPaneMenu;          // Main menu container (used for hole coordinates)
+    @FXML Pane blackPane;
+    @FXML StackPane crudStackPane;
+    @FXML VBox stackPaneMenu;
     @FXML ScrollPane pastryScrollPane, drinkScrollPane;
 
-    // --- MAIN INTERFACE BUTTONS ---
     @FXML Button pastryButton, drinkButton;
     @FXML Button editMenuButton, goBackButton;
 
-    // --- ITEM CONTAINERS (VBoxes) ---
     @FXML VBox VBoxPastry, VBoxDrink;
 
-    // --- SHARED CRUD ELEMENTS ---
-    @FXML VBox choseOperationVBox;     // Initial window to select operation
-    @FXML Label notificationMessage;    // Global notification text
+    @FXML VBox choseOperationVBox;
+    @FXML Label notificationMessage;
 
-    // --- ADD SECTION ---
     @FXML StackPane toAddMain;
     @FXML VBox toAddVBox1, toAddVBox2;
     @FXML TextField toAddNameTextField, toAddPriceTextField, toAddDescriptionTextField;
     @FXML Label toAddHighlightLabel, toAddDoneLabel;
     @FXML Button backButton, nextButton;
 
-    // --- UPDATE SECTION ---
     @FXML StackPane toUpdateMain;
     @FXML VBox toUpdateVBox1;
     @FXML TextField toUpdateNameTextField, toUpdatePriceTextField, toUpdateDescriptionTextField;
     @FXML Label toUpdateHighlight, toUpdateDoneLabel;
     @FXML Button backUpdateButton, nextUpdateButton;
 
-    // --- DELETE SECTION ---
     @FXML StackPane toDeleteMain;
     @FXML VBox toDeleteVBox1;
     @FXML Label toDeleteChoiceLabel, toDeleteDoneLabel;
     @FXML Button toDeleteNoButton, toDeleteYesButton, toDeleteButton;
 
-    // --- LOGIC VARIABLES (Internal) ---
     private LoginPageController loginController;
     private String tempName;
     private double tempPrice;
