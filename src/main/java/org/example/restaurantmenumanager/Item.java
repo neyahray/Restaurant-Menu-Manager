@@ -1,10 +1,10 @@
 package org.example.restaurantmenumanager;
 
 public abstract class Item {
-    private int id;
-    private String name;
-    private double price;
-    private String description;
+    protected int id;
+    protected String name;
+    protected double price;
+    protected String description;
 
     public Item(int id, String name, double price, String description) {
         this.id = id;
@@ -36,13 +36,5 @@ public abstract class Item {
         return description;
     }
 
-    //polymorphism
     public abstract String getTableName();
-
-    //setters
-    public void setName(String name) { this.name = name; }
-
-    public void setPrice(Double price) { this.price = price; }
-
-    public void setDescription(String description) { this.description = description; }
 }

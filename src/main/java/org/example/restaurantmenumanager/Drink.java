@@ -10,5 +10,7 @@ public class Drink extends Item {
     }
 
     @Override
-    public String getTableName() { return "drinks"; }
+    public String getTableName() {
+        return "drinks";
+    }
 }
