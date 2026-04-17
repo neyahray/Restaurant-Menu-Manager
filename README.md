@@ -9,7 +9,7 @@ This is a simple and handy JavaFX based application, for managing a restaurant m
 * **Role-Based Access Control:** Admins can change everything, Chefs can update info, and Guests can only look at the menu.
 * **CRUD-operations:** You can add new dishes, change their prices or descriptions, and delete them if they are no longer available.
 * **Modern Design:** The app has a clean look with a dimmed background when editing and easy step-by-step forms.
-* **Database Integration:**Persistent storage of all menu data through a robust SQL backend handled by a dedicated DataBaseHandler.
+* **Database Integration:** Persistent storage of all menu data through a robust SQL backend handled by a dedicated DataBaseHandler.
 
 ## Objectives
 The main goals of this project are:
