@@ -300,8 +300,6 @@ public class MenuController extends CommonMethods {
 
 
 
-
-
     protected static pastryOrDrink currentPastryOrDrink = pastryOrDrink.none;
 
     @FXML
@@ -545,22 +543,8 @@ public class MenuController extends CommonMethods {
     }
 
 
-
-
-
-    //DELETE
-    private void setDeleteMode(boolean visible) {
-        editMenuButton.setMouseTransparent(true);
-        for (var node : VBoxPastry.getChildren()) {
-            if (node instanceof CommonStyledItem item) {
-                item.getDashButton().setVisible(visible);
-                item.getDashButton().setManaged(true);
-                if (visible) {
-                    item.getDashButton().setOnAction(e -> handleDeleteClick(item));
-                }
-            }
-        }
-        for (var node : VBoxDrink.getChildren()) {
+    private void updateItemsVisibility(VBox container, boolean visible) {
+        for (Node node : container.getChildren()) {
             if (node instanceof CommonStyledItem item) {
                 item.getDashButton().setVisible(visible);
                 item.getDashButton().setManaged(true);
@@ -572,7 +556,14 @@ public class MenuController extends CommonMethods {
     }
 
 
+    //DELETE
+    private void setDeleteMode(boolean visible) {
+        editMenuButton.setMouseTransparent(true);
 
+        // Просто вызываем метод для каждого твоего VBox
+        updateItemsVisibility(VBoxPastry, visible);
+        updateItemsVisibility(VBoxDrink, visible);
+    }
 
     protected void handleDeleteClick(CommonStyledItem item) {
         this.currentDeleteItem = item;
@@ -610,27 +601,9 @@ public class MenuController extends CommonMethods {
     //UPDATE
     private void setUpdatePencil(boolean visible) {
         editMenuButton.setMouseTransparent(true);
-        for (var node : VBoxPastry.getChildren()) {
-            if (node instanceof CommonStyledItem item) {
-                item.getUpdatePencil().setVisible(visible);
-                item.getUpdatePencil().setManaged(true);
 
-                if (visible) {
-                    item.getUpdatePencil().setOnAction(e -> handleUpdateClick(item));
-                }
-            }
-        }
-        for (var node : VBoxDrink.getChildren()) {
-            if (node instanceof CommonStyledItem item) {
-                item.getUpdatePencil().setVisible(visible);
-                item.getDashButton().setManaged(true);
-
-                if (visible) {
-                    item.getUpdatePencil().setOnAction(e -> handleUpdateClick(item));
-                }
-            }
-        }
-
+        updateItemsVisibility(VBoxPastry, visible);
+        updateItemsVisibility(VBoxDrink, visible);
     }
 
 
