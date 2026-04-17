@@ -1,20 +1,19 @@
 # Restaurant Menu Manager
 
-**Student Name:** Tashbaeva Ayana,
-**Group:** COMSE-25
+**Student Name:** Tashbaeva Ayana, **Group:** COMSE-25
 
 ## Description
-**Restaurant Menu Manager** is a JavaFX-based desktop application designed to streamline the management of a restaurant's product offerings. The application provides an interactive interface for viewing and managing menu items categorized into Pastries and Drinks.
+This is a simple and handy JavaFX based application, for managing a restaurant menu. The application provides an interactive interface for viewing and managing menu items categorized into Pastries and Drink. It helps staff organize food and drinks without using paper.
 
-Key functionalities include:
-* **Role-Based Access Control:** Differentiated access levels for Admins, Chefs, and Guests.
-* **Dynamic CRUD Operations:** A seamless system to Add, Update, and Delete menu items in real-time.
-* **Interactive UI/UX:** Features a modern interface with background dimming, step-by-step input wizards, and smooth transitions.
-* **Database Integration:** Persistent storage of all menu data through a robust SQL backend handled by a dedicated DataBaseHandler.
+**What it can do:**
+* **Role-Based Access Control:** Admins can change everything, Chefs can update info, and Guests can only look at the menu.
+* **CRUD-operations:** You can add new dishes, change their prices or descriptions, and delete them if they are no longer available.
+* **Modern Design:** The app has a clean look with a dimmed background when editing and easy step-by-step forms.
+* **Database Integration:**Persistent storage of all menu data through a robust SQL backend handled by a dedicated DataBaseHandler.
 
 ## Objectives
-The primary goal of this project is to provide restaurant staff with a reliable and efficient digital tool to manage their inventory. Specifically, the project aims to achieve the following:
-* **Digital Transformation:** Move from manual menu tracking to an automated digital database for faster updates.
-* **Operational Security:** Protect sensitive data (like pricing and item deletion) by restricting functionalities based on the user's professional role.
-* **User-Centric Design:** Simplify complex data entry tasks by breaking them down into logical, guided steps (e.g., separate stages for Name, Price, and Description).
-* **Maintainability:** Build a clean, modular code structure that allows for easy expansion, such as adding new food categories or integrating order tracking in the future.
+The main goals of this project are:
+* **Make work faster:** To help restaurant workers update the menu in seconds.
+* **Keep it safe:** To make sure only the right people (like Admins) can delete items or change prices.
+* **Keep it simple:** To create an interface that is easy to understand, even for someone who isn't good with computers.
+* **Stay organized:** To keep all pastries and drinks in one clear, digital list that is easy to search and manage.
