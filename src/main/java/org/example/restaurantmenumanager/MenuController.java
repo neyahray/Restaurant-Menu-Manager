@@ -666,7 +666,6 @@ public class MenuController extends CommonMethods {
                     }
                 } else {
                     enteredInputCheckToPrint(toUpdateNameTextField, toUpdatePriceTextField, toUpdateDescriptionTextField);
-
                 }
                 break;
         }
