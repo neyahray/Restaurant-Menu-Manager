@@ -38,32 +38,11 @@ public class DataBaseHandler extends CommonMethods {
                     description TEXT
                 );
                 """;
-//
-//        String insertPastriesSQL = """
-//                INSERT OR IGNORE INTO pastries (id, name, price, description) VALUES
-//                (1, "Matcha waffle", 2.20, "Waffles with matcha"),
-//                (2, "Dubai chocolate muffin", 1.80, "gold labubu"),
-//                (3, "Red velvet", 2.90, "yummy"),
-//                (4, "Blueberry doughnut", 0.90, "Dariia loves it");
-//                """;
-//
-//        String insertDrinksSQL = """
-//                INSERT OR IGNORE INTO drinks (id, name, price, description) VALUES
-//                (1, "Matcha", 2.50, "better with coconut milk"),
-//                (2, "Matcha-Mango", 2.80, "bonfire"),
-//                (3, "Birch sap", 1.20, "very niche"),
-//                (4, "Apple juice", 1.50, "yummy"),
-//                (5, "Orange juice", 1.50, "yummy"),
-//                (6, "Apricote compote", 1.80, "grape's"),
-//                (7, "Pineapple Energy drink", 1.90, "free for Dariia");
-//                """;
 
         try {
             Statement stmt = getConnection().createStatement();
             stmt.execute(pastriesSQL);
             stmt.execute(drinksSQL);
-//            stmt.execute(insertPastriesSQL);
-//            stmt.execute(insertDrinksSQL);
             System.out.println("Tables created!");
         } catch (SQLException e) {
             e.printStackTrace();

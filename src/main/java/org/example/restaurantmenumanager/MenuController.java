@@ -11,8 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import java.util.List;
-
-
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.geometry.Bounds;
@@ -31,7 +29,6 @@ public class MenuController extends CommonMethods {
 
     // --- ITEM CONTAINERS (VBoxes) ---
     @FXML VBox VBoxPastry, VBoxDrink;
-
 
     // --- SHARED CRUD ELEMENTS ---
     @FXML VBox choseOperationVBox;     // Initial window to select operation
@@ -402,11 +399,8 @@ public class MenuController extends CommonMethods {
             notification("Description is invalid!");
             return;
         }
-
         return;
-
     }
-
 
     protected void enteredInputCheckToPrintForAdd() {
         String input = "";
@@ -443,7 +437,6 @@ public class MenuController extends CommonMethods {
         }
     }
 
-
     @FXML
     protected void BackNextButtonClicked(MouseEvent event) {
         Node source = (Node) event.getSource();
@@ -479,8 +472,12 @@ public class MenuController extends CommonMethods {
                     case toAddInputPage.inputDescription -> {
                         if (enteredInputCheck(toAddDescriptionTextField.getText(), "text")) {
                             tempDescription = toAddDescriptionTextField.getText();
+                            currentToAddInputPage = toAddInputPage.inputName;
                             toAddDescriptionTextField.clear();
                             setTextHighlight("name");
+                            toAddDescriptionTextField.setVisible(false);
+                            toAddNameTextField.setVisible(true);
+
 
                             Item newitem = null;
                             String table = "";
@@ -494,22 +491,25 @@ public class MenuController extends CommonMethods {
                                     table = "drinks";
                                 }
                             }
-                            DataBaseHandler.addItem(newitem, table);
-                            loadDataFromDB();
 
-                            switch (currentPastryOrDrink) {
-                                case PASTRY -> {
-                                    toAddDoneLabel.setText("New pastry '" + tempName + "' added! Check menu");
+                            try {
+                                DataBaseHandler.addItem(newitem, table);
+                                loadDataFromDB();
+
+                                switch (currentPastryOrDrink) {
+                                    case PASTRY -> {
+                                        toAddDoneLabel.setText("New pastry '" + tempName + "' added! Check menu");
+                                    }
+                                    case DRINK -> {
+                                        toAddDoneLabel.setText("New drink '" + tempName + "' added! Check menu");
+                                    }
                                 }
-                                case DRINK -> {
-                                    toAddDoneLabel.setText("New drink '" + tempName + "' added! Check menu");
-                                }
+
+                                toAddVBox2.setVisible(false);
+                                toAddDoneLabel.setVisible(true);
+                            } catch (Exception e) {
+                                notification("Error: Could not save to database");
                             }
-
-                            toAddVBox2.setVisible(false);
-                            toAddDescriptionTextField.setVisible(false);
-                            toAddNameTextField.setVisible(true);
-                            toAddDoneLabel.setVisible(true);
                         } else {
                             enteredInputCheckToPrintForAdd();
                         }
@@ -543,13 +543,27 @@ public class MenuController extends CommonMethods {
     }
 
 
-    private void updateItemsVisibility(VBox container, boolean visible) {
+    protected void updateItemsVisibility(VBox container, boolean visible, String mode) {
         for (Node node : container.getChildren()) {
             if (node instanceof CommonStyledItem item) {
-                item.getDashButton().setVisible(visible);
-                item.getDashButton().setManaged(true);
-                if (visible) {
-                    item.getDashButton().setOnAction(e -> handleDeleteClick(item));
+                item.getDashButton().setVisible(false);
+                item.getUpdatePencil().setVisible(false);
+
+                switch (mode) {
+                    case "delete" -> {
+                        item.getDashButton().setVisible(visible);
+                        item.getDashButton().setManaged(true);
+                        if (visible) {
+                            item.getDashButton().setOnAction(e -> handleDeleteClick(item));
+                        }
+                    }
+                    case "update" -> {
+                        item.getUpdatePencil().setVisible(visible);
+                        item.getUpdatePencil().setManaged(true);
+                        if (visible) {
+                            item.getUpdatePencil().setOnAction(e -> handleUpdateClick(item));
+                        }
+                    }
                 }
             }
         }
@@ -557,12 +571,11 @@ public class MenuController extends CommonMethods {
 
 
     //DELETE
-    private void setDeleteMode(boolean visible) {
+    protected void setDeleteMode(boolean visible) {
         editMenuButton.setMouseTransparent(true);
 
-        // Просто вызываем метод для каждого твоего VBox
-        updateItemsVisibility(VBoxPastry, visible);
-        updateItemsVisibility(VBoxDrink, visible);
+        updateItemsVisibility(VBoxPastry, visible, "delete");
+        updateItemsVisibility(VBoxDrink, visible, "delete");
     }
 
     protected void handleDeleteClick(CommonStyledItem item) {
@@ -582,13 +595,17 @@ public class MenuController extends CommonMethods {
 
         switch (id) {
             case "toDeleteYesButton":
-                DataBaseHandler.deleteItem(currentDeleteItem.getItem().getId(), currentDeleteItem.getItem().getTableName());
-                VBoxPastry.getChildren().remove(currentDeleteItem);
-                VBoxDrink.getChildren().remove(currentDeleteItem);
-                toDeleteVBox1.setVisible(false);
-                toDeleteDoneLabel.setVisible(true);
-                toDeleteDoneLabel.setText("'" + currentDeleteItem.getItem().getName() + "' deleted! Check Menu");
-                setDeleteMode(false);
+                try {
+                    DataBaseHandler.deleteItem(currentDeleteItem.getItem().getId(), currentDeleteItem.getItem().getTableName());
+                    VBoxPastry.getChildren().remove(currentDeleteItem);
+                    VBoxDrink.getChildren().remove(currentDeleteItem);
+                    toDeleteVBox1.setVisible(false);
+                    toDeleteDoneLabel.setVisible(true);
+                    toDeleteDoneLabel.setText("'" + currentDeleteItem.getItem().getName() + "' deleted! Check Menu");
+                    setDeleteMode(false);
+                } catch (Exception e) {
+                    notification("Error: Could not delete item");
+                }
                 break;
             case "toDeleteNoButton":
                 xClicked();
@@ -597,29 +614,27 @@ public class MenuController extends CommonMethods {
     }
 
 
-
     //UPDATE
-    private void setUpdatePencil(boolean visible) {
+    protected void setUpdatePencil(boolean visible) {
         editMenuButton.setMouseTransparent(true);
 
-        updateItemsVisibility(VBoxPastry, visible);
-        updateItemsVisibility(VBoxDrink, visible);
+        updateItemsVisibility(VBoxPastry, visible, "update");
+        updateItemsVisibility(VBoxDrink, visible, "update");
     }
 
-
     protected void handleUpdateClick(CommonStyledItem updateItem) {
-            this.currentUpdateItem = updateItem;
-            setBlackPaneHole(false);
-            crudStackPane.setVisible(true);
-            toUpdateMain.setVisible(true);
-            toUpdateVBox1.setVisible(true);
+        this.currentUpdateItem = updateItem;
+        setBlackPaneHole(false);
+        crudStackPane.setVisible(true);
+        toUpdateMain.setVisible(true);
+        toUpdateVBox1.setVisible(true);
 
-            Item data = currentUpdateItem.getItem();
-            toUpdateNameTextField.setText(data.getName());
-            toUpdatePriceTextField.setText(Double.toString(data.getPrice()));
-            toUpdateDescriptionTextField.setText(data.getDescription());
+        Item data = currentUpdateItem.getItem();
+        toUpdateNameTextField.setText(data.getName());
+        toUpdatePriceTextField.setText(Double.toString(data.getPrice()));
+        toUpdateDescriptionTextField.setText(data.getDescription());
 
-            toUpdateHighlight.setText("Updating '" + data.getName() + "'");
+        toUpdateHighlight.setText("Updating '" + data.getName() + "'");
     }
 
     @FXML
@@ -634,18 +649,26 @@ public class MenuController extends CommonMethods {
                 if (enteredInputCheck(toUpdateNameTextField.getText(), "text") &&
                         enteredInputCheck(toUpdatePriceTextField.getText(), "number") &&
                         enteredInputCheck(toUpdateDescriptionTextField.getText(), "text")) {
-                    DataBaseHandler.updateItem(currentUpdateItem.getItem().getId(), toUpdateNameTextField.getText(), Double.parseDouble(toUpdatePriceTextField.getText()), toUpdateDescriptionTextField.getText(), currentUpdateItem.getItem().getTableName());
-                    toUpdateVBox1.setVisible(false);
-                    toUpdateDoneLabel.setVisible(true);
-                    toUpdateDoneLabel.setText("'" + currentUpdateItem.getItem().getName() + "' is updated! Check Menu");
-                    loadDataFromDB();
+                    Item itemToUpdate = currentUpdateItem.getItem();
+                    itemToUpdate.setName(toUpdateNameTextField.getText());
+                    itemToUpdate.setPrice(Double.parseDouble(toUpdatePriceTextField.getText()));
+                    itemToUpdate.setDescription(toUpdateDescriptionTextField.getText());
+
+                    try {
+                        DataBaseHandler.updateItem(itemToUpdate.getId(), itemToUpdate.getName(), itemToUpdate.getPrice(), itemToUpdate.getDescription(), itemToUpdate.getTableName());
+                        toUpdateVBox1.setVisible(false);
+                        toUpdateDoneLabel.setVisible(true);
+                        toUpdateDoneLabel.setText("'" + currentUpdateItem.getItem().getName() + "' is updated! Check Menu");
+                        loadDataFromDB();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        notification("Database error: Could not update item");
+                    }
                 } else {
                     enteredInputCheckToPrint(toUpdateNameTextField, toUpdatePriceTextField, toUpdateDescriptionTextField);
 
                 }
                 break;
-
         }
     }
-
 }
