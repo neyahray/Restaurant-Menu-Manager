@@ -32,6 +32,7 @@ public class MenuController extends CommonMethods {
     // --- ITEM CONTAINERS (VBoxes) ---
     @FXML VBox VBoxPastry, VBoxDrink;
 
+
     // --- SHARED CRUD ELEMENTS ---
     @FXML VBox choseOperationVBox;     // Initial window to select operation
     @FXML Label notificationMessage;    // Global notification text
