@@ -55,11 +55,6 @@ public class MenuController extends CommonMethods {
     private CommonStyledItem currentUpdateItem;
 
 
-    public void setLoginController(LoginPageController lc) {
-        this.loginController = lc;
-    }
-
-
     public void initialize() {
         switch (currentUserRole) {
             case GUEST -> {
@@ -87,6 +82,10 @@ public class MenuController extends CommonMethods {
         PASTRY,
         DRINK,
         none
+    }
+
+    public void setLoginController(LoginPageController lc) {
+        this.loginController = lc;
     }
 
     @FXML

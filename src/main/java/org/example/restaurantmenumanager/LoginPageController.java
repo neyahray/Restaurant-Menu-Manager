@@ -133,7 +133,6 @@ public class LoginPageController extends CommonMethods {
         }
     }
 
-
     protected static boolean userInputCheck(String str) {
         return str.matches("[a-zA-Z0-9_.@]+");
     }

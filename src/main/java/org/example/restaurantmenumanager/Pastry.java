@@ -13,6 +13,4 @@ public class Pastry extends Item {
     public String getTableName() {
         return "pastries";
     }
-
-
 }

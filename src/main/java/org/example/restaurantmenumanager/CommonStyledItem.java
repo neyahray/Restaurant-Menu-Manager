@@ -10,8 +10,6 @@ import java.io.IOException;
 
 public class CommonStyledItem extends HBox {
     private Item item;
-
-    // Твои оригинальные названия id
     @FXML private Label id;
     @FXML private Label name;
     @FXML private Label price;
@@ -52,6 +50,4 @@ public class CommonStyledItem extends HBox {
     public Item getItem() {
         return item;
     }
-
-
 }
